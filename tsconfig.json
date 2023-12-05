@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es6",              // Especifica la versión de ECMAScript de salida
+    "module": "commonjs",         // Sistema de módulos
+    "outDir": "./dist",           // Directorio para archivos de salida
+    "strict": true,               // Habilita estricto chequeo de tipos
+    "esModuleInterop": true,      // Permite interoperabilidad de módulos ES6 con CommonJS
+    "skipLibCheck": true,         // Omite la verificación de tipos en archivos de declaración
+    "forceConsistentCasingInFileNames": true // Fuerza mayúsculas y minúsculas consistentes en nombres de archivos
+  },
+  "include": ["src/**/*"],        // Incluye todos los archivos en el directorio 'src'
+  "exclude": ["node_modules"]     // Excluye el directorio 'node_modules'
+}
