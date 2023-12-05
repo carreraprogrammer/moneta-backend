@@ -1,12 +1,18 @@
-const express = require('express');
+// src/app.ts
+import express from 'express';
+import categoryRoutes from './api/routes/categoryRoutes'
+import subCategoryRoutes from './api/routes/subCategoryRoutes';
+import productRoutes from './api/routes/productRoutes';
+
 const app = express();
 
-const dbConnect = require('./config/dbConnect');
+app.use(express.json());
 
-const Category = require('./routes/category');
-const SubCategory = require('./routes/subCategory');
-const Product = require('./routes/product');
+// Integrando rutas
+app.use('/api/categories', categoryRoutes);
+app.use('/api/subcategories', subCategoryRoutes);
+app.use('/api/products', productRoutes);
 
-dbConnect();
+// ... Resto de tu configuración de Express
 
 export default app;
