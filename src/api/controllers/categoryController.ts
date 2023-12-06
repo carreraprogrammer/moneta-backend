@@ -12,13 +12,18 @@ export const getCategories = async (req: Request, res: Response) => {
 };
 
 export const createCategory = async (req: Request, res: Response) => {
-    try {
-        const newCategory = new Category(req.body);
-        const savedCategory = await newCategory.save();
-        res.status(201).json(savedCategory);
-    } catch (error: any) {
-        res.status(400).send(error.message);
-    }
+  const { name } = req.body;
+  if (!name) {
+    return res.status(400).send('Name is required');
+  }
+    
+  try {
+    const newCategory = new Category(req.body);
+    const savedCategory = await newCategory.save();
+    res.status(201).json(savedCategory);
+  } catch (error: any) {
+    res.status(400).send(error.message);
+  }
 };
 
 export const updateCategory = async (req: Request, res: Response) => {
