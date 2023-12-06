@@ -13,10 +13,17 @@ export const getCategories = async (req: Request, res: Response) => {
 
 export const createCategory = async (req: Request, res: Response) => {
   const { name } = req.body;
+
   if (!name) {
     return res.status(400).send('Name is required');
   }
-    
+
+  const existingCategory = Category.findCategoryByName(name);
+
+  if (existingCategory) {
+    return res.status(400).send('Category already exists');
+  }
+  
   try {
     const newCategory = new Category(req.body);
     const savedCategory = await newCategory.save();
