@@ -13,6 +13,7 @@ export const getProducts = async (req: Request, res: Response) => {
 };
 
 export const createProduct = async (req: Request, res: Response) => {
+  
   const { name, price, category, subCategory } = req.body;
 
   if (!name) {
@@ -26,6 +27,12 @@ export const createProduct = async (req: Request, res: Response) => {
   }
   if (!subCategory) {
     return res.status(400).send('SubCategory is required');
+  }
+
+  const existingCategory = Product.findProductByName(name);
+
+  if (existingCategory) {
+    return res.status(400).send('Product already exists');
   }
 
   try {
