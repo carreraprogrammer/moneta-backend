@@ -22,6 +22,23 @@ const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.getProducts = getProducts;
 const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name, price, category, subCategory } = req.body;
+    if (!name) {
+        return res.status(400).send('Name is required');
+    }
+    if (!price) {
+        return res.status(400).send('Price is required');
+    }
+    if (!category) {
+        return res.status(400).send('Category is required');
+    }
+    if (!subCategory) {
+        return res.status(400).send('SubCategory is required');
+    }
+    const existingCategory = Product.findProductByName(name);
+    if (existingCategory) {
+        return res.status(400).send('Product already exists');
+    }
     try {
         const newProduct = new Product(req.body);
         const savedProduct = yield newProduct.save();

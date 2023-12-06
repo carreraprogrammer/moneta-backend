@@ -22,6 +22,14 @@ const getCategories = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 });
 exports.getCategories = getCategories;
 const createCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name } = req.body;
+    if (!name) {
+        return res.status(400).send('Name is required');
+    }
+    const existingCategory = Category.findCategoryByName(name);
+    if (existingCategory) {
+        return res.status(400).send('Category already exists');
+    }
     try {
         const newCategory = new Category(req.body);
         const savedCategory = yield newCategory.save();

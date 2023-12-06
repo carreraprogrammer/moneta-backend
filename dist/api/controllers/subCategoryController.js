@@ -22,6 +22,17 @@ const getSubCategories = (req, res) => __awaiter(void 0, void 0, void 0, functio
 });
 exports.getSubCategories = getSubCategories;
 const createSubCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name, category } = req.body;
+    if (!name) {
+        return res.status(400).send('Name is required');
+    }
+    if (!category) {
+        return res.status(400).send('Category is required');
+    }
+    const existingSubCategory = SubCategory.findSubCategoryByName(name);
+    if (existingSubCategory) {
+        return res.status(400).send('SubCategory already exists');
+    }
     try {
         const newSubCategory = new SubCategory(req.body);
         const savedSubCategory = yield newSubCategory.save();
