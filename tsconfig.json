@@ -8,6 +8,6 @@
     "skipLibCheck": true,         // Omite la verificación de tipos en archivos de declaración
     "forceConsistentCasingInFileNames": true // Fuerza mayúsculas y minúsculas consistentes en nombres de archivos
   },
-  "include": ["src/**/*"],        // Incluye todos los archivos en el directorio 'src'
+  "include": ["src/**/*", "seeds"],        // Incluye todos los archivos en el directorio 'src'
   "exclude": ["node_modules"]     // Excluye el directorio 'node_modules'
 }

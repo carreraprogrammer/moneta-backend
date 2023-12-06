@@ -5,14 +5,14 @@ import subCategoryRoutes from './api/routes/subCategoryRoutes';
 import productRoutes from './api/routes/productRoutes';
 
 const app = express();
+const dbConnect = require('./db/dbConnect');
+
+dbConnect();
 
 app.use(express.json());
 
-// Integrando rutas
 app.use('/api/categories', categoryRoutes);
 app.use('/api/subcategories', subCategoryRoutes);
 app.use('/api/products', productRoutes);
-
-// ... Resto de tu configuración de Express
 
 export default app;
