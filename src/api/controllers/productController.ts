@@ -13,6 +13,21 @@ export const getProducts = async (req: Request, res: Response) => {
 };
 
 export const createProduct = async (req: Request, res: Response) => {
+  const { name, price, category, subCategory } = req.body;
+
+  if (!name) {
+    return res.status(400).send('Name is required');
+  }
+  if (!price) {
+    return res.status(400).send('Price is required');
+  }
+  if (!category) {
+    return res.status(400).send('Category is required');
+  }
+  if (!subCategory) {
+    return res.status(400).send('SubCategory is required');
+  }
+
   try {
     const newProduct = new Product(req.body);
     const savedProduct = await newProduct.save();
